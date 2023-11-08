@@ -1,45 +1,51 @@
 import React from "react"
-import MovieList from "./MovieList"
-import { extend } from "jquery"
+import Stars from './Stars';
+import ReviewForm from './ReviewForm';
 
 
 
 export default class Movie extends React.Component {
-    constructor() {
+    constructor(props) {
+// props is accessing our object through props
         super();
+
+        // console.log('test', props.movieData)
+        //  console.log('test2', props.movieData.title)
+        this.movieName = props.movieData.title;
+        this.movieImg = props.movieData.image;
         this.state = {
-            movies: [
-                {
-                    title: "The Shawshank Redemption",                 
-                    synopsis: "Wrongly convicted man finds hope and friendship in prison, ultimately achieving redemption and freedom.",
-                    rating: 5,
-                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzGdfg4HcAI-yCi9gXofi7JLT8T8vgcufIfTyTxqL4_3UUiNJ"
-                },
-                {
-                    title: "The Godfather",
-                    synopsis: "Epic saga of an Italian-American crime family's patriarch and his son's ascent in organized crime.",
-                    rating: 5,
-                    image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ6EAZYpFPv-j-msWE7uFUueby2qiH_lz67ryBOJ41kg4nKHJ6y"
-                },
-                {
-                    title: "Pulp Fiction",
-                    synopsis: "Nonlinear narrative of intersecting lives, crime, and dark humor in a gritty Los Angeles setting.",
-                    rating: 5,
-                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlNRzwKlBbE6QGNyvO0rGoruofKdYgGK9MeozNwRdWmnDMf8xI"
-                },
-            ],
+            reviews: [{
+                comment: 'this comment is a test',
+                id: 1
+            }
+            ]
         };
     }
-    
+
     render() {
-        return(
-            <div>
-                <MovieList movies={this.state.movies}/>
+        // console.log('test moviedate: ', movieData)
+        return (
+            <div className="bg-black text-white p-5">
+                <div className="card w-75 rounded bg-dark text-white text-center m-0 p-5">
+                    <h2>{this.movieName}</h2><br></br>
+                    <img className="img-thumbnail mx-auto" src={this.movieImg} />
+                    <Stars />
+                    <div>Your Review: <span><ReviewForm reviews={this.state.reviews} /></span></div>
+                    
+
+                    {/* beginning of reviews container */}
+                    <div className='container'>
+                        {this.state.reviews.map((review, index) => (
+                            <div key={index}>
+                                {/* {review.comment} */}
+                            </div>
+                            // <Movie key={index} movieData={movie} />
+                        ))}
+                    </div>
+                    {/* end of reviews container */}
+                    
+                </div>
             </div>
         );
     }
 }
-
-
-
-

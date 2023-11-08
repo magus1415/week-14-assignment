@@ -1,31 +1,47 @@
 import React from 'react';
-import Stars from './Stars';
-import ReviewForm from './ReviewForm';
-import ReviewList from './ReviewList';
+import Movie from './Movie';
 
-const MovieList = ({ movies }) => {
+const MovieList = () => {
+  const movies = [
+    {
+        title: "The Shawshank Redemption",                 
+        synopsis: "Wrongly convicted man finds hope and friendship in prison, ultimately achieving redemption and freedom.",
+        rating: 5,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzGdfg4HcAI-yCi9gXofi7JLT8T8vgcufIfTyTxqL4_3UUiNJ"
+    },
+    {
+        title: "The Godfather",
+        synopsis: "Epic saga of an Italian-American crime family's patriarch and his son's ascent in organized crime.",
+        rating: 5,
+        image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ6EAZYpFPv-j-msWE7uFUueby2qiH_lz67ryBOJ41kg4nKHJ6y"
+    },
+    {
+        title: "Pulp Fiction",
+        synopsis: "Nonlinear narrative of intersecting lives, crime, and dark humor in a gritty Los Angeles setting.",
+        rating: 5,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlNRzwKlBbE6QGNyvO0rGoruofKdYgGK9MeozNwRdWmnDMf8xI"
+    }
+
+]
+
+
+
+
   return (
     <div className='bg-black text-white p-5'>
-      <h1 className='container text-center'>Movie Review</h1>
-      <table className='container'>
-        <tbody>
+      <h1 className='container text-center text-warning'>Movie Review</h1>
+      <div className='container'>
+        
           {movies.map((movie, index) => (
-            <tr className='card w-75 bg-dark text-white text-center m-5 p-5' key={index}>
-              <td>
-                <img className='img-thumbnail mx-auto' src={movie.image} alt={movie.title} />
-              </td>
-              <td>
-                <h2>{movie.title}</h2>
-                <strong>Synopsis:</strong> {movie.synopsis}
-                <br /><br />
-                <Stars /><br /><br />
-                <ReviewForm />
-              </td>
-            </tr>
+      
+
+              <Movie key={index} movieData={movie}/>
+
           ))}
-        </tbody>
-      </table>
+     
+      </div>
     </div>
+    
   );
 };
 
